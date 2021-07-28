@@ -1,60 +1,73 @@
 #include "holberton.h"
 #include <stdarg.h>
+
+void printint(int i);
+void printstring(char s);
+void printhex(int i);
+
 /**
  * _printf - prints characters.
  * @str: strings.
  */ 
 
-int _printf(char *str, ...)
+int _printf(char *p, ...)
 {
-	int count = 0;
-	int printint;
-	char intstr[10];
-       	char *printstr;
-	va_list args;
+	char *p; 
+	va_list argp; 
+	int i; 
+	char *s; 
+	char fmtbuf[256]; 
+	va_start(argp, fmt); 
 
-	va_start(args, str);
+	for(p + fmt; *p != '\0'; p++) 
+	{ 
+		if(*p != '%') 
+		{ 
+			putchar(*p); 
+			continue; 
+		} 
+		switch(*++p) 
+		{ 
+			case 'c': 
+				i = va_arg(argp, int); 
+				_putchar(i); 
+				break; 
+			case 'd': 
+				i = va_arg(argp, int); 
+				printint(i); 
+				break; 
+			case 's': 
+				s = va_arg(argp, char *); 
+				printstring(s); 
+				break; 
+			case 'x': 
+				i = va_arg(argp, int); 
+				printhex(i); 
+				break; 
+			case '%': 
+				_putchar('%'); 
+				break; 
+		} 
+	} 
+	va_end(argp);
 
-	while(*str)
-	{
-		if (*str == '%')
-		{
-			str++;
-			switch(*str)
-			{
-				case 's':
-					printstr = va_arg(args, char *);
-					_putchar(printstr);
-					str++;
-					count += strlen(printstr);
-				       break;
-				case 'i':
-					printint = va_arg(args, int);
-				 	_itoa(printint, intstr, 10);
-					_putchar(intstr);
-					str++;
-					count += strlen(intstr);
-					break;
-				case '%':
-					_putchar('%');
-					str++;
-					count++;
-					break;
-				case '\0':
-					break;
-				default:
-					_putchar('%');
-					_putchar(*str);
-					str++;
-					count += 2;
-			}
-		}
-		else 
-		{
-			_putchar(*str);
-			str++;
-			count++;
-		}
-	}
+	
 	return (count);
+}
+void printint(int i) 
+{ 
+	int digit; 
+	digit = i % 10; 
+	digit = digit + '0'; 
+	i = i / 10; 
+	_putchar(i); 
+}
+
+void printstring(char s) 
+{ 
+	_putchar(s); 
+} 
+void printhex(int i) 
+{
+ 	_puts(i);
 }
