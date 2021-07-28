@@ -10,30 +10,30 @@ void printhex(int i);
  * @str: strings.
  */ 
 
-int _printf(char *p, ...)
+int _printf(char *format, ...)
 {
-	char *p; 
-	va_list argp; 
-	int i; 
-	char *s; 
-	char fmtbuf[256]; 
-	va_start(argp, fmt); 
+	va_list argument; 
+	int i = 0; 
+	/* char *s; 
+	char fmtbuf[256];  
+	va_start(argument, format); */ 
 
-	for(p + fmt; *p != '\0'; p++) 
+	for(; *format != '\0'; format++) 
 	{ 
-		if(*p != '%') 
+		if(*format != '%') 
 		{ 
-			putchar(*p); 
+			_putchar(format);
+		       i++;	
 			continue; 
 		} 
-		switch(*++p) 
+	/*	switch(*++p) 
 		{ 
 			case 'c': 
-				i = va_arg(argp, int); 
+				i = va_arg(argument, char); 
 				_putchar(i); 
 				break; 
-			case 'd': 
-				i = va_arg(argp, int); 
+			 case 'd': 
+				i = va_arg(argp, int);
 				printint(i); 
 				break; 
 			case 's': 
@@ -46,21 +46,18 @@ int _printf(char *p, ...)
 				break; 
 			case '%': 
 				_putchar('%'); 
-				break; 
-		} 
+				break; */
+	//	} 
 	} 
-	va_end(argp);
+	//va_end(argument);
 
 	
-	return (count);
+	return (i);
 }
+/*
 void printint(int i) 
 { 
-	int digit; 
-	digit = i % 10; 
-	digit = digit + '0'; 
-	i = i / 10; 
-	_putchar(i); 
+	
 }
 
 void printstring(char s) 
@@ -71,3 +68,4 @@ void printhex(int i)
 {
  	_puts(i);
 }
+*/
