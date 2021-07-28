@@ -1,10 +1,6 @@
 #include "holberton.h"
 #include <stdarg.h>
 
-void printint(int i);
-void printstring(char s);
-void printhex(int i);
-
 /**
  * _printf - prints characters.
  * @str: strings.
@@ -14,58 +10,68 @@ int _printf(char *format, ...)
 {
 	va_list argument; 
 	int i = 0; 
-	/* char *s; 
-	char fmtbuf[256];  
-	va_start(argument, format); */ 
+	char *s;
+       	char ch;
+	/* 
+	 * char fmtbuf[256];
+	 */
+	va_start(argument, format);
 
 	for(; *format != '\0'; format++) 
 	{ 
 		if(*format != '%') 
 		{ 
-			_putchar(format);
+			_putchar(*format);
 		       i++;	
 			continue; 
 		} 
-	/*	switch(*++p) 
+		switch(*++format) 
 		{ 
 			case 'c': 
-				i = va_arg(argument, char); 
-				_putchar(i); 
+				ch = va_arg(argument, int); 
+				_putchar(ch);
+			       i++;	
 				break; 
 			 case 'd': 
-				i = va_arg(argp, int);
-				printint(i); 
+				i = va_arg(argument, int);
+				printint(i);
+			       i++;	
 				break; 
 			case 's': 
-				s = va_arg(argp, char *); 
-				printstring(s); 
+				s = va_arg(argument, char *); 
+				printstring(s);
+			       i++;	
 				break; 
 			case 'x': 
-				i = va_arg(argp, int); 
+				i = va_arg(argument, int); 
 				printhex(i); 
 				break; 
 			case '%': 
 				_putchar('%'); 
-				break; */
-	//	} 
+				break;
+		} 
 	} 
-	//va_end(argument);
+	va_end(argument);
 
 	
 	return (i);
 }
-/*
+
 void printint(int i) 
-{ 
-	
+{
+	if (i < 0)
+		_putchar('-');
+	if (i / 10 != 0)
+		printint(i / 10);
+	_putchar((i % 10) + '0');
 }
 
-void printstring(char s) 
+void printstring(char *s) 
 { 
-	_putchar(s); 
+	for (; *s != '\0'; s++) 
+		_putchar(*s); 
 } 
 void printhex(int i) 
 {
- 	_puts(i);
+	_putchar(i);
 }
-*/
