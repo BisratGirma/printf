@@ -4,6 +4,8 @@
 /**
  * _printf - prints characters.
  * @str: strings.
+ * 
+ * Return: the number of characters printed.
  */ 
 
 int _printf(char *format, ...)
@@ -12,9 +14,6 @@ int _printf(char *format, ...)
 	int i = 0; 
 	char *s;
        	char ch;
-	/* 
-	 * char fmtbuf[256];
-	 */
 	va_start(argument, format);
 
 	for(; *format != '\0'; format++) 
@@ -32,11 +31,26 @@ int _printf(char *format, ...)
 				_putchar(ch);
 			       i++;	
 				break; 
-			 case 'd': 
+			case 'd': 
 				i = va_arg(argument, int);
 				printint(i);
-			       i++;	
+				i++;	
 				break; 
+			case 'u':
+				i = va_arg(argument,unsigned int);
+				printunsigned(i);
+				i++;
+				break;
+			case 'o':
+			        i = va_arg(argument, int);
+				printint(i);
+				i++;
+				break;
+			case 'i':
+				i = va_arg(argument, int);
+				printint(i);
+				i++;
+				break;
 			case 's': 
 				s = va_arg(argument, char *); 
 				printstring(s);
@@ -48,6 +62,7 @@ int _printf(char *format, ...)
 				break; 
 			case '%': 
 				_putchar('%'); 
+				i++;
 				break;
 		} 
 	} 
@@ -57,12 +72,31 @@ int _printf(char *format, ...)
 	return (i);
 }
 
+/**
+ * printunsigned - prints unsinged int
+ * @i: the unsigned integer.
+ */
+void printunsigned(unsigned int i)
+{
+	if (i / 10 != 0)
+	       printunsigned(i / 10);
+	_putchar((i % 10) + '0');
+}
+
+/**
+ * printint - prints integers and decimals
+ * @i: the integer to be printed.
+ */
 void printint(int i) 
 {
 	if (i < 0)
+	{
+		i = i * -1;
 		_putchar('-');
+	}
 	if (i / 10 != 0)
 		printint(i / 10);
+
 	_putchar((i % 10) + '0');
 }
 
@@ -70,7 +104,12 @@ void printstring(char *s)
 { 
 	for (; *s != '\0'; s++) 
 		_putchar(*s); 
-} 
+}
+
+/**
+ * printhex - prints hex number
+ * @i: the number to be hexed
+ */
 void printhex(int i) 
 {
 	_putchar(i);
