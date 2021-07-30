@@ -1,9 +1,10 @@
-#ifndef holberton_h
-#define holberton_h
-int _printf(const char *format, ...);
-int _strlen(const char *s);
-char *_strcpy(char *dest, const char *src);
-void print_number(int n);
+#ifndef _HOLBERTON_H_
+#define _HOLBERTON_H_
+
+int _printf(char * format, ...);
 int _putchar(char c);
+void printint(int i);
+void printstring(char *s);
+void printhex(int i);
 void printunsigned(unsigned int i);
 #endif
