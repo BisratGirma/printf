@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "holberton.h"
 #include "functions.c"
+
 int _printf(const char *format, ...)
 {
 int len = _strlen(format), i;
@@ -33,13 +34,11 @@ case 'i':
 print_number(va_arg(items, int));
 break;
 case 'u':
-i = va_arg(items,unsigned int);
-print_number(i);
+print_unsigned(va_arg(items, unsigned int));
 i++;
 break;
 case 'o':
-i = va_arg(items, int);
-print_number(i);
+print_unsigned(va_arg(items, unsigned int));
 i++;
 break;
 }

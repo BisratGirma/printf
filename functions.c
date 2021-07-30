@@ -74,7 +74,7 @@ return (dest);
 */
 void print_number(int n)
 {
-long int copy, nth, size = 1, ones = n % 10;
+int copy, nth, size = 1, ones = n % 10;
 
 n /= 10;
 copy = n;
@@ -99,4 +99,30 @@ size /= 10;
 }
 _putchar('0' + ones);
 }
+/**
+ * printunsigned - prints unsinged int
+ * @i: the unsigned integer.
+ */
+void print_unsigned(unsigned int n)
+{
+if(n)
+{
+unsigned int copy, nth, size = 1, ones = n % 10;
+n /= 10;
+copy = n;
+while (copy / 10 != 0)
+{
+copy /= 10, size *= 10;
+}
+while (size > 0)
+{
+nth = n / size;
+_putchar('0' + nth);
+n = n - (nth *size);
+size /= 10;
+}
+_putchar('0' + ones);
+}
+}
+
 #endif
