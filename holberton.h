@@ -38,7 +38,7 @@ int isoctal(char *string);
 int octaltodecimal(char *string);
 int finalstage(const char *format, const char **formatt, va_list arg_list,
 	      specy format_list[]);
-int loophole(const char *format, va_list arg_list, fs format_list[]);
+int loophole(const char *format, va_list arg_list, specy format_list[]);
 int print_unsigned(va_list arg_list);
 
 #endif
