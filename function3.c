@@ -23,7 +23,6 @@ int print_unsigned(va_list arg_list)
 }
 
 
-
 /**
  * print_octal - prints a hexadecimal characters.
  * @arg_list: list that contains the hexadecimal
