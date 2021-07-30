@@ -1,6 +1,7 @@
 
 #include <stdlib.h>
 #include "holberton.h"
+#include "_putchar.c"
 /**
  * printint - prints integers and decimals
  * @i: the integer to be printed.
