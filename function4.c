@@ -18,13 +18,12 @@ int _pow(unsigned int base, int power)
 	return (prod);
 }
 
-
 /**
- * print_memory - print's memory
+ * print_memory - prints memory
  * @arg_list: arg list
+ *
  * Return: mem
  */
-
 int print_memory(va_list arg_list)
 {
 	int d = va_arg(arg_list, int);
@@ -32,10 +31,10 @@ int print_memory(va_list arg_list)
 	return (d);
 }
 
-
 /**
  * print_STR - prints a string with a `S` (upper case) specificer
  * @arg_list: argument
+ *
  * Return: number of character printed
  */
 
