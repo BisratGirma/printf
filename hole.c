@@ -13,7 +13,7 @@
  */
 
 int finalstage(const char *format, const char **formatt, va_list arg_list,
-fs format_list[])
+specy format_list[])
 {
 	int print_count = 0, s = 0, list_len = 12;
 
