@@ -85,7 +85,7 @@ int print_STR(va_list arg_list)
 /**
  * print_rev - prints a string in reverse
  * @arg: argument from _printf
- * if a flag is passed to _printf
+ *
  * Return: length of the printed string
  */
 int print_rev(va_list arg)
