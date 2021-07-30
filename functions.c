@@ -78,7 +78,7 @@ int copy, nth, size = 1, ones = n % 10;
 
 n /= 10;
 copy = n;
-if (ones < 0)
+if (n < 0)
 {
 ones *= -1, copy *= -1, n *= -1;
 _putchar('-');
