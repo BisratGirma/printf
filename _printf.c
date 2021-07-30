@@ -175,7 +175,7 @@ int printhex(int unsigned num)
 	free(hex);
 	return (count);
 }
-void print_binary(int n)
+void print_binary(unsigned int n)
 {
   int c, k;
   for (c = 31; c >= 0; c--)

@@ -10,5 +10,5 @@ void printstring(char *s);
 int printhex(unsigned int i);
 void printunsigned(unsigned int i);
 int printocta(unsigned int i);
-void print_binary(int n);
+void print_binary(unsigned int n);
 #endif
