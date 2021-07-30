@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 
 	va_start(arg_list, format);
 
-	print_count = parser(format, arg_list);
+	print_count = hole(format, arg_list);
 
 	va_end(arg_list);
 
