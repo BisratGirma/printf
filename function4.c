@@ -44,7 +44,6 @@ int print_STR(va_list arg_list)
 	int print_count, pc = 0, n = 1;
 
 	string = va_arg(arg_list, char *);
-
 	if (string == NULL)
 	{
 		string = "(null)";
@@ -64,21 +63,22 @@ int print_STR(va_list arg_list)
 			pc += 2;
 			_putchar('0');
 			_putchar("0123456789ABCDEF"[(int)string[print_count]]);
-			} else
+			}
+			else
 			{
 			pc += 2;
 			_putchar(n + '0');
-			_putchar("0123456789ABCDEF"[(int)string[print_count] -
-						    16 * n]);
-			}
+			_putchar("0123456789ABCDEF"[(int)string[print_count] - 16 * n]);
 
-		} else
+			}
+		}
+		else
 		{
-                _putchar(string[print_count]);
+			_putchar(string[print_count]);
 		}
 	}
 
-        return (print_count + pc);
+	return (print_count + pc);
 }
 
 
