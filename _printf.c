@@ -12,8 +12,6 @@ int _printf(char *format, ...)
 {
 	va_list argument; 
 	int i = 0; 
-	char *s;
-       	char ch;
 	va_start(argument, format);
 
 	for(; *format != '\0'; format++) 
@@ -27,24 +25,19 @@ int _printf(char *format, ...)
 		switch(*++format) 
 		{ 
 			case 'c': 
-				ch = va_arg(argument, int); 
-				_putchar(ch);
+				_putchar(va_arg(argument, int));
 			       i++;	
 				break; 
 			case 'd': 
-				i = va_arg(argument, int);
-				printint(i);
+				printint(va_arg(argument, int));
 				i++;	
 				break; 
 			case 'u':
-				i = va_arg(argument,unsigned int);
-				printunsigned(i);
+				printunsigned(va_arg(argument, unsigned int));
 				i++;
 				break;
 			case 'o':
-			        i = va_arg(argument, int);
-				printint(i);
-				i++;
+				i = i + printocta(va_arg(argument, unsigned int));
 				break;
 			case 'i':
 				i = va_arg(argument, int);
@@ -52,13 +45,11 @@ int _printf(char *format, ...)
 				i++;
 				break;
 			case 's': 
-				s = va_arg(argument, char *); 
-				printstring(s);
+				printstring(va_arg(argument, char *));
 			       i++;	
 				break; 
 			case 'x': 
-				i = va_arg(argument, int); 
-				printhex(i); 
+				i = i + printhex(va_arg(argument, unsigned int));
 				break; 
 			case '%': 
 				_putchar('%'); 
@@ -105,12 +96,73 @@ void printstring(char *s)
 	for (; *s != '\0'; s++) 
 		_putchar(*s); 
 }
+/**
+ * printocta - prints octa numbers.
+ * @num: an integer number to be converted.
+ *
+ * Return: the number of characters printed.
+ */
+int printocta(unsigned int num)
+{
+	unsigned int copy;
+	char *octa;
+	int i, s = 0, print_count = 0;
 
+	if (num == 0)
+		return (_putchar('0'));
+
+	for (copy = num; copy != 0; s++)
+	{
+		copy = copy / 8;
+	}
+
+	octa = malloc(s);
+
+	if (!octa)
+		return (-1);
+
+	for (i = s - 1; i >= 0; i--)
+	{
+		octa[i] = num % 8 + '0';
+		num = num / 8;
+	}
+	
+	for (; i < s; i++)
+	{
+		_putchar(octa[i]);
+		print_count++;
+	}
+	free(octa);
+	return (print_count);
+}
 /**
  * printhex - prints hex number
  * @i: the number to be hexed
  */
-void printhex(int i) 
+int printhex(int unsigned num) 
 {
-	_putchar(i);
+	unsigned int copy;
+	int i, j, repl, count = 0;
+	char *hex;
+
+	if (num == 0)
+		return (_putchar('0'));
+	for (copy = num; copy != 0; count++)
+	{
+		copy = copy / 16;
+	}
+	hex = malloc(count);
+	for (i = 0; num != 0; i++)
+	{
+		repl = num % 16;
+		if (repl < 10)
+			hex[i] = repl + '0';
+		else
+			hex[i] = repl - 10 + 'A';
+		num = num / 16;
+	}
+	for (j = i - 1; j >= 0; j--)
+		_putchar(hex[j]);
+	free(hex);
+	return (count);
 }
