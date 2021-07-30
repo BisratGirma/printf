@@ -44,7 +44,11 @@ int _printf(char *format, ...)
 				printint(i);
 				i++;
 				break;
-			case 's': 
+			case 's' : 
+				printstring(va_arg(argument, char *));
+			       i++;	
+				break; 
+            case 'S': 
 				printstring(va_arg(argument, char *));
 			       i++;	
 				break; 
@@ -55,6 +59,11 @@ int _printf(char *format, ...)
 				_putchar('%'); 
 				i++;
 				break;
+            case 'b': 
+            i = va_arg(argument, int);
+            print_binary(i); 
+            i++;
+            break;
 		} 
 	} 
 	va_end(argument);
@@ -165,4 +174,18 @@ int printhex(int unsigned num)
 		_putchar(hex[j]);
 	free(hex);
 	return (count);
+}
+void print_binary(int n)
+{
+  int c, k;
+  for (c = 31; c >= 0; c--)
+  {
+    k = n >> c;
+
+    if (k & 1)
+      _putchar('1');
+    else
+      _putchar('0');
+  }
+
 }
