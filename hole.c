@@ -60,7 +60,7 @@ specy format_list[])
  * Return: print count
  */
 
-int loophole(const char *format, va_list arg_list, fs format_list[])
+int loophole(const char *format, va_list arg_list, specy format_list[])
 {
 	int print_count = 0;
 
