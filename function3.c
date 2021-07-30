@@ -2,7 +2,6 @@
 
 /**
  * print_unsigned - prints unsigned integer character.
- *
  * @arg_list: arguments list
  *
  * Return: number
@@ -26,9 +25,10 @@ int print_unsigned(va_list arg_list)
 
 
 /**
- * print_octal - prints a hexadecimal
+ * print_octal - prints a hexadecimal characters.
  * @arg_list: list that contains the hexadecimal
- * Return: number.
+ *
+ * Return: total printed number.
  */
 int print_octal(va_list arg_list)
 {
@@ -63,9 +63,9 @@ int print_octal(va_list arg_list)
 }
 
 /**
- * print_binary - function that prints the binary
- * representation of a number
+ * print_binary - prints the binary characters.
  * @arg_list: argument list
+ *
  * Return: number of charachters printed
  */
 
