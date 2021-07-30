@@ -1,66 +1,116 @@
-#include <stdarg.h>
-#include <stdlib.h>
 #include "holberton.h"
-#include "functions.c"
+#include <stdarg.h>
 
-int _printf(const char *format, ...)
-{
-int len = _strlen(format), i;
-char *fmt = (char *) malloc(sizeof(char) * len);
-va_list items;
-_strcpy(fmt, format);
+/**
+ * _printf - prints characters.
+ * @str: strings.
+ * 
+ * Return: the number of characters printed.
+ */ 
 
-va_start(items, format);
+int _printf(char *format, ...)
+{
+	va_list argument; 
+	int i = 0; 
+	char *s;
+       	char ch;
+	va_start(argument, format);
 
-if (fmt != NULL)
-{
-for (i = 0; i < len; i++)
-{
-if (fmt[i] != '\\' && fmt[i] == '%')
-{
-i++;
-switch (fmt[i])
-{
-case 'c':
-_putchar(va_arg(items, int));
-break;
-case 's':
-_puts(va_arg(items, char *));
-break;
-case 'd':
-print_number(va_arg(items, int));
-break;
-case 'i':
-print_number(va_arg(items, int));
-break;
-case 'u':
-print_unsigned(va_arg(items, unsigned int));
-i++;
-break;
-case 'o':
-print_unsigned(va_arg(items, unsigned int));
-i++;
-break;
+	for(; *format != '\0'; format++) 
+	{ 
+		if(*format != '%') 
+		{ 
+			_putchar(*format);
+		       i++;	
+			continue; 
+		} 
+		switch(*++format) 
+		{ 
+			case 'c': 
+				ch = va_arg(argument, int); 
+				_putchar(ch);
+			       i++;	
+				break; 
+			case 'd': 
+				i = va_arg(argument, int);
+				printint(i);
+				i++;	
+				break; 
+			case 'u':
+				i = va_arg(argument,unsigned int);
+				printunsigned(i);
+				i++;
+				break;
+			case 'o':
+			        i = va_arg(argument, int);
+				printint(i);
+				i++;
+				break;
+			case 'i':
+				i = va_arg(argument, int);
+				printint(i);
+				i++;
+				break;
+			case 's': 
+				s = va_arg(argument, char *); 
+				printstring(s);
+			       i++;	
+				break; 
+			case 'x': 
+				i = va_arg(argument, int); 
+				printhex(i); 
+				break; 
+			case '%': 
+				_putchar('%'); 
+				i++;
+				break;
+		} 
+	} 
+	va_end(argument);
+
+	
+	return (i);
 }
-}
-else if (fmt[i] == '\\')
+
+/**
+ * printunsigned - prints unsinged int
+ * @i: the unsigned integer.
+ */
+void printunsigned(unsigned int i)
 {
-i++;
-switch (fmt[i])
+	if (i / 10 != 0)
+	       printunsigned(i / 10);
+	_putchar((i % 10) + '0');
+}
+
+/**
+ * printint - prints integers and decimals
+ * @i: the integer to be printed.
+ */
+void printint(int i) 
 {
-case 't':
-_putchar(9);
-break;
-case 'n':
-_putchar(10);
-break;
+	if (i < 0)
+	{
+		i = i * -1;
+		_putchar('-');
+	}
+	if (i / 10 != 0)
+		printint(i / 10);
+
+	_putchar((i % 10) + '0');
 }
+
+void printstring(char *s) 
+{ 
+	for (; *s != '\0'; s++) 
+		_putchar(*s); 
 }
-else
+
+/**
+ * printhex - prints hex number
+ * @i: the number to be hexed
+ */
+void printhex(int i) 
 {
-_putchar(fmt[i]);
-}
-}
-}
-return (0);
+	_putchar(i);
 }
