@@ -1,15 +1,14 @@
 #include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h> 
+#include <stdlib.h>
 #include "holberton.h"
 #include "functions.c"
 int _printf(const char *format, ...)
 {
-int len = _strlen(format);
+int len = _strlen(format), i;
 char *fmt = (char *) malloc(sizeof(char) * len);
-_strcpy(fmt, format);
-int i;
 va_list items;
+_strcpy(fmt, format);
+
 va_start(items, format);
 
 if (fmt != NULL)
@@ -32,6 +31,16 @@ print_number(va_arg(items, int));
 break;
 case 'i':
 print_number(va_arg(items, int));
+break;
+case 'u':
+i = va_arg(items,unsigned int);
+print_number(i);
+i++;
+break;
+case 'o':
+i = va_arg(items, int);
+print_number(i);
+i++;
 break;
 }
 }
