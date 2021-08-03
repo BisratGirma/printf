@@ -93,7 +93,7 @@ int loophole(const char *format, va_list arg_list, specy format_list[])
 
 
 /**
- * hole - passes format lists 
+ * hole - passes format lists
  *
  * @format: format string
  * @arg_list: arguments list
